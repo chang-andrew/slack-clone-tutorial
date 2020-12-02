@@ -33,7 +33,7 @@
 .modal-header {
     @apply text-lg;
     @apply leading-6;
-    @apply font-medium; 
+    @apply font-medium;
     @apply text-gray-900;
 }
 

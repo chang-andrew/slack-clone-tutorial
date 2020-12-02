@@ -5,7 +5,7 @@
       div.flex-1(v-if="isEditing")
         div.mb-2.px-2.flex-none
           div.flex.rounded-lg.border-2.border-gray-500.overflow-hidden
-            input.w-full.px-1.pb-2.pt-1(@keyup.enter="saveEdit" v-model="newText" type="text")
+            input.w-full.px-1.pb-2.pt-1(@keyup.enter="saveEdit" v-model="newText" type="text" ref="messageEditInput")
         div.flex
           button.btn-outline.ml-2(@click="resetEdit") Cancel
           button.btn.ml-2(@click="saveEdit") Save
@@ -40,6 +40,9 @@
       this.$bus.$on('message:startEdit', (message: any) => {
         if (message.id === this.message.id) {
           this.isEditing = true;
+          this.$nextTick(() => {
+            (this.$refs.messageEditInput as HTMLElement).focus();
+          });
         }
       });
       this.resetEdit();
@@ -67,8 +70,10 @@
     }
 
     saveEdit() {
-      this.$bus.$emit('message:edit', { id: this.message.id, body: this.newText });
-      this.resetEdit();
+      if (this.newText) {
+        this.$bus.$emit('message:edit', { id: this.message.id, body: this.newText });
+        this.resetEdit();
+      }
     }
   }
 </script>

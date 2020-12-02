@@ -10,8 +10,6 @@
   "dependencies": {
     "@types/lodash": "^4.14.165",
     "@types/vue-feather-icons": "^5.0.1",
-    "bootstrap": "^4.5.3",
-    "bootstrap-vue": "^2.20.1",
     "core-js": "^3.6.5",
     "lodash": "^4.17.20",
     "vue": "^2.6.11",

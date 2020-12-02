@@ -16,7 +16,6 @@
   import SendMessageBox from '@/components/SendMessageBox.vue';
   import assign from 'lodash/assign';
   import DeleteMessageModal from '@/components/DeleteMessageModal.vue';
-  import Modal from '../components/util/Modal.vue';
 
   @Component({
     components: {
@@ -82,7 +81,7 @@
           last_name: 'User',
           profile_src: 'https://i.picsum.photos/id/638/200/200.jpg?hmac=64UpQ4ouFUNEG9cnXLQ9GxchDShg-mL1rdCrZGfc94U'
         },
-        timestamp: Date.now(),
+        timestamp: new Date().toLocaleString(),
         body: 'This is a preset sample message!'
       },
       {
@@ -92,7 +91,7 @@
           last_name: 'Name',
           profile_src: 'https://i.picsum.photos/id/879/200/200.jpg?hmac=_4fWz44KoPcfzc5VRuEhms_-fXjdx1VsijYO3xVD9b0'
         },
-        timestamp: Date.now(),
+        timestamp: new Date().toLocaleString(),
         body: 'I appear in every conversation...'
       },
     ];
@@ -113,7 +112,7 @@
       this.currentMessages.push({
         id: `${this.messageIdCount++}`,
         sender: this.$store.state.currentUser,
-        timestamp: Date.now(),
+        timestamp: new Date().toLocaleString(),
         body: text
       });
     }
