@@ -1,0 +1,43 @@
+.btn {
+    @apply bg-teal-400;
+    @apply text-white;
+    @apply font-bold;
+    @apply py-1;
+    @apply px-2;
+    @apply rounded;
+    @apply font-normal;
+}
+
+.btn:hover {
+    @apply bg-teal-700;
+}
+
+.btn-outline {
+    @apply bg-transparent;
+    @apply text-teal-700;
+    @apply border;
+    @apply border-teal-400;
+    @apply font-bold;
+    @apply py-1;
+    @apply px-2;
+    @apply rounded;
+    @apply font-normal;
+}
+
+.btn-outline:hover {
+    @apply bg-teal-400;
+    @apply border-transparent;
+    @apply text-white;
+}
+
+.modal-header {
+    @apply text-lg;
+    @apply leading-6;
+    @apply font-medium; 
+    @apply text-gray-900;
+}
+
+.modal-body {
+    @apply text-sm;
+    @apply text-gray-500;
+}

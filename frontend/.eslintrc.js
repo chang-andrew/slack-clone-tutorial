@@ -15,8 +15,10 @@ module.exports = {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'max-len': 'off',
-    'indent': 'off',
+    indent: 'off',
     'comma-dangle': 'off',
     'lines-between-class-members': 'off',
+    '@typescript-eslint/camelcase': 'warn',
+    'no-plusplus': 'warn',
   },
 };

@@ -1,7 +1,7 @@
 <template lang='pug'>
   div.mb-2.px-4.flex-none
     div.flex.rounded-lg.border-2.border-gray-500.overflow-hidden
-      input.w-full.px-3.pb-4.pt-2(type="text" placeholder="Message Channel Name")
+      input.w-full.px-3.pb-4.pt-2(@keyup.enter="sendMessage" v-model="messageText" type="text" placeholder="Message Channel Name")
 </template>
 
 <script lang='ts'>
@@ -10,5 +10,13 @@
 
   @Component({})
   export default class SendMessageBox extends Vue {
+    messageText = '';
+
+    sendMessage() {
+      if (this.messageText) {
+        this.$bus.$emit('message:send', this.messageText);
+        this.messageText = '';
+      }
+    }
   }
 </script>
