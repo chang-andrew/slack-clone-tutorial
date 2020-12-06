@@ -15,9 +15,9 @@
           PlusCircleIcon(size='1x')
       // section body
       div(v-if="showChannels")
-        div.px-4.pb-1.pl-6.text-white.cursor-pointer(v-for="i in 10")
+        div.px-4.pb-1.pl-6.text-white.cursor-pointer(v-for="channel in allChannels" @click="selectConversation(channel)")
           span.w-2.h-2.opacity-50 #
-          span.ml-2.text-white.opacity-50 Channel Name
+          span.ml-2.text-white.opacity-50 {{ channel.name }}
     // Direct Message Section
     div.my-4
       // section header
@@ -30,15 +30,16 @@
           PlusCircleIcon(size='1x')
       // section body
       div(v-if="showDms")
-        div.px-4.pb-1.pl-6.text-white.cursor-pointer.flex.items-center(v-for="i in 10")
+        div.px-4.pb-1.pl-6.text-white.cursor-pointer.flex.items-center(v-for="dm in allDirectMessages" @click="selectConversation(dm)")
           span.bg-green-500.rounded-full.block.w-2.h-2
-          span.ml-2.text-white.opacity-50 Person Name
+          span.ml-2.text-white.opacity-50 {{ dm.name }}
 </template>
 
 <script lang='ts'>
   import Component from 'vue-class-component';
   import Vue from 'vue';
   import { ChevronRightIcon, ChevronDownIcon, PlusCircleIcon } from 'vue-feather-icons';
+  import { Prop } from 'vue-property-decorator';
 
   @Component({
     components: {
@@ -48,8 +49,18 @@
     }
   })
   export default class ChatSidebar extends Vue {
+    @Prop() conversations!: any[];
+
     showChannels = false;
     showDms = false;
+
+    get allChannels() {
+      return this.conversations.filter((c) => c.is_channel);
+    }
+
+    get allDirectMessages() {
+      return this.conversations.filter((c) => !c.is_channel);
+    }
 
     toggleChannelsDropdown() {
       this.showChannels = !this.showChannels;
@@ -57,6 +68,10 @@
 
     toggleDmsDropdown() {
       this.showDms = !this.showDms;
+    }
+
+    selectConversation(conversation: any) {
+      this.$bus.$emit('conversation:selected', conversation.id);
     }
   }
 </script>

@@ -3,9 +3,9 @@
     div.action-btn-container
       div.action-btn
         SmileIcon.action-icon
-      div.action-btn
+      div.action-btn(@click="startEdit")
         EditIcon.action-icon
-      div.action-btn
+      div.action-btn(@click="deleteMessage")
         Trash2Icon.action-icon.text-red-500
 </template>
 
@@ -13,6 +13,7 @@
   import Component from 'vue-class-component';
   import Vue from 'vue';
   import { SmileIcon, EditIcon, Trash2Icon } from 'vue-feather-icons';
+  import { Prop } from 'vue-property-decorator';
 
   @Component({
     components: {
@@ -22,6 +23,15 @@
     }
   })
   export default class SingleMessageActions extends Vue {
+    @Prop() message: any;
+
+    startEdit() {
+      this.$bus.$emit('message:startEdit', this.message.id);
+    }
+
+    deleteMessage() {
+      this.$bus.$emit('message:delete', this.message.id);
+    }
   }
 </script>
 

@@ -9,3 +9,6 @@ YouTube: https://www.youtube.com/watch?v=BdgRMe4WDTw&feature=youtu.be
 
 Medium: https://amchang.medium.com/slack-clone-vue-js-django-part-1-a-simple-slack-chat-interface-using-tailwind-css-9b90a443ae7f
 
+**Part 2**
+
+YouTube: https://youtu.be/OFCKh9UNs-k

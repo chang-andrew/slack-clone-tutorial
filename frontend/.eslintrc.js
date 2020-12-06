@@ -18,5 +18,9 @@ module.exports = {
     'indent': 'off',
     'comma-dangle': 'off',
     'lines-between-class-members': 'off',
+    '@typescript-eslint/camelcase': 'warn',
+    'no-plusplus': 'warn',
+    'import/order': 'warn',
+    'prefer-destructuring': 'off',
   },
 };
