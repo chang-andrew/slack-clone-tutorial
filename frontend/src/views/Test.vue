@@ -1,7 +1,9 @@
 <template lang='pug'>
-  div
-    p Just a testing page
-    Modal
+  div.flex.justify-center
+    div
+      p Just a testing page
+      button.btn(@click="showModal") Show Modal
+    Modal(:isVisible="modalVisible"  @cancel="modalCancel")
 </template>
 
 <script lang='ts'>
@@ -15,5 +17,14 @@
     }
   })
   export default class Test extends Vue {
+    modalVisible = false;
+
+    showModal() {
+      this.modalVisible = true;
+    }
+
+    modalCancel() {
+      this.modalVisible = false;
+    }
   }
 </script>
