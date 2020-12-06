@@ -13,7 +13,7 @@
                 slot(name='title')
                   p Modal Title
               button.p-1.ml-auto.float-right.leading-none(@click="emitCancel")
-                div.text-black.h-6.w-6.text-2xl.font-semibold
+                div.text-black.h-6.w-6.text-xl.font-semibold
                   span ×
             // body
             div.relative.p-6.flex-auto
