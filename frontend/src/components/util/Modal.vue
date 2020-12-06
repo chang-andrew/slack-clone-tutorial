@@ -10,17 +10,22 @@
             // header
             div.flex.items-start.justify-between.p-5
               h3.text-2xl.font-semibold
-                p Modal Title
+                slot(name='title')
+                  p Modal Title
               button.p-1.ml-auto.float-right.leading-none(@click="emitCancel")
                 div.text-black.h-6.w-6.text-2xl.font-semibold
-                  | ×
+                  span ×
             // body
             div.relative.p-6.flex-auto
-              p Some random text inside of this modal
+              slot
             // footer
             div.flex.items-center.justify-end.p-6
-              button.btn-outline(@click="emitCancel") Cancel
-              button.btn.ml-2 Ok
+              button(@click="emitCancel")
+                slot(name='cancel-button')
+                  button.btn-outline Cancel
+              button.ml-2(@click="emitConfirm")
+                slot(name='confirm-button')
+                  button.btn Ok
     transition(name='modal-background')
       div.opacity-25.fixed.inset-0.z-40.bg-black(v-if="isVisible")
 </template>
@@ -36,6 +41,10 @@
 
     emitCancel() {
       this.$emit('cancel');
+    }
+
+    emitConfirm() {
+      this.$emit('confirm');
     }
   }
 </script>

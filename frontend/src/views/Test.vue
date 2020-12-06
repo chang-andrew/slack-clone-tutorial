@@ -4,6 +4,7 @@
       p Just a testing page
       button.btn(@click="showModal") Show Modal
     Modal(:isVisible="modalVisible"  @cancel="modalCancel")
+      p Test modal slots, this is the default slot.
 </template>
 
 <script lang='ts'>
