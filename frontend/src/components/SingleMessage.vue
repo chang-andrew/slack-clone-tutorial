@@ -15,7 +15,11 @@
           span.text-gray-500.text-xs.ml-1 {{ messageTimestamp }}
         span {{ messageBodyText }}
       // action buttons
-      SingleMessageActions(v-if="isHovered" :message="message")
+      SingleMessageActions(v-show="isHovered" :message="message" @delete="confirmDelete")
+      Modal(:isVisible="deleteModalVisible" @cancel="deleteModalVisible = false" @confirm="deleteMessage")
+        p Are you sure you want to delete this message? This cannot be undone.
+        template(v-slot:confirm-button)
+          button.btn-danger Delete
 </template>
 
 <script lang='ts'>
@@ -23,10 +27,12 @@
   import Vue from 'vue';
   import { Prop } from 'vue-property-decorator';
   import SingleMessageActions from './SingleMessageActions.vue';
+  import Modal from '@/components/util/Modal.vue';
 
   @Component({
     components: {
-      SingleMessageActions
+      SingleMessageActions,
+      Modal,
     }
   })
   export default class SingleMessage extends Vue {
@@ -35,6 +41,7 @@
     isEditing = false;
     newText = '';
     isHovered = false;
+    deleteModalVisible = false;
 
     created() {
       this.resetEdit();
@@ -74,6 +81,14 @@
         this.$bus.$emit('message:edit', { id: this.message.id, body: this.newText });
         this.resetEdit();
       }
+    }
+
+    confirmDelete() {
+      this.deleteModalVisible = true;
+    }
+
+    deleteMessage() {
+      this.$bus.$emit('message:delete', this.message.id);
     }
   }
 </script>
