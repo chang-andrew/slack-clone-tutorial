@@ -1,33 +1,32 @@
 <template lang='pug'>
   div
     // div covering whole screen, uses fixed + inset-0 to take up whole screen. Flex will center the modal within whole screen
-    transition(name='modal-body')
+    transition(name='modal')
       div.overflow-x-hidden.overflow-y-auto.fixed.inset-0.z-50.justify-center.items-center.flex(v-if="isVisible")
-        // wrapper div for the modal body, helps size the div
-        div.relative.w-auto.my-6.mx-auto.max-w-5xl
-          // content
-          div.rounded-lg.shadow-lg.relative.flex.flex-col.w-full.bg-white
-            // header
-            div.flex.items-start.justify-between.p-5
-              h3.text-2xl.font-semibold
-                slot(name='title')
-                  p Modal Title
-              button.p-1.ml-auto.float-right.leading-none(@click="emitCancel")
-                div.text-black.h-6.w-6.text-xl.font-semibold
-                  span ×
-            // body
-            div.relative.p-6.flex-auto
-              slot
-            // footer
-            div.flex.items-center.justify-end.p-6
-              button(@click="emitCancel")
-                slot(name='cancel-button')
-                  button.btn-outline Cancel
-              button.ml-2(@click="emitConfirm")
-                slot(name='confirm-button')
-                  button.btn Ok
-    transition(name='modal-background')
-      div.opacity-25.fixed.inset-0.z-40.bg-black(v-if="isVisible")
+        // modal body
+        div.flex.flex-col.max-w-5xl.rounded-lg.shadow-lg.bg-white
+          // header
+          div.p-5.flex.items-start.justify-between
+            h3.text-2xl.font-semibold
+              slot(name='title')
+                p Modal Title
+            button.p-1.leading-none(@click="emitCancel")
+              div.h-6.w-6.text-xl.font-semibold
+                span ×
+          // body
+          div.p-6
+            slot
+          // footer
+          div.p-6.flex.items-center.justify-end
+            button(@click="emitCancel")
+              slot(name='cancel-button')
+                button.btn-outline Cancel
+            button.ml-2(@click="emitConfirm")
+              slot(name='confirm-button')
+                button.btn Ok
+    transition(name='modal')
+      div(v-if="isVisible")
+        div.opacity-25.fixed.inset-0.z-40.bg-black
 </template>
 
 <script lang='ts'>
@@ -50,20 +49,16 @@
 </script>
 
 <style scoped>
-  .modal-body-leave-active, .modal-body-enter-active, .modal-background-leave-active, .modal-background-enter-active {
+  .modal-leave-active, .modal-enter-active {
     @apply transition-all;
     @apply duration-200;
   }
 
-  .modal-body-leave-to, .modal-background-leave-to, .modal-body-enter, .modal-background-enter {
+  .modal-leave-to, .modal-enter {
     opacity: 0;
   }
 
-  .modal-body-enter-to {
+  .modal-enter-to {
     opacity: 1;
-  }
-
-  .modal-background-enter-to {
-    opacity: .25;
   }
 </style>
