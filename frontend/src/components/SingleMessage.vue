@@ -15,7 +15,7 @@
           span.text-gray-500.text-xs.ml-1 {{ messageTimestamp }}
         span {{ messageBodyText }}
       // action buttons
-      SingleMessageActions(v-if="isHovered" :message="message")
+      SingleMessageActions(v-if="isHovered" :message="message" @edit='startEdit' @delete='deleteMessage')
 </template>
 
 <script lang='ts'>
@@ -38,14 +38,6 @@
 
     created() {
       this.resetEdit();
-      this.$bus.$on('message:startEdit', (messageId: string) => {
-        if (messageId === this.message.id) {
-          this.isEditing = true;
-          this.$nextTick(() => {
-            (this.$refs.messageEditInput as HTMLElement).focus();
-          });
-        }
-      });
     }
 
     get senderFullName() {
@@ -69,11 +61,22 @@
       this.newText = this.message.body;
     }
 
+    startEdit() {
+      this.isEditing = true;
+      this.$nextTick(() => {
+        (this.$refs.messageEditInput as HTMLElement).focus();
+      });
+    }
+
     saveEdit() {
       if (this.newText) {
         this.$bus.$emit('message:edit', { id: this.message.id, body: this.newText });
         this.resetEdit();
       }
+    }
+
+    deleteMessage() {
+      this.$bus.$emit('message:delete', this.message.id);
     }
   }
 </script>

@@ -3,9 +3,9 @@
     div.action-btn-container
       div.action-btn
         SmileIcon.action-icon
-      div.action-btn(@click="startEdit")
+      div.action-btn(@click="$emit('edit')")
         EditIcon.action-icon
-      div.action-btn(@click="deleteMessage")
+      div.action-btn(@click="$emit('delete')")
         Trash2Icon.action-icon.text-red-500
 </template>
 
@@ -23,15 +23,6 @@
     }
   })
   export default class SingleMessageActions extends Vue {
-    @Prop() message: any;
-
-    startEdit() {
-      this.$bus.$emit('message:startEdit', this.message.id);
-    }
-
-    deleteMessage() {
-      this.$bus.$emit('message:delete', this.message.id);
-    }
   }
 </script>
 
