@@ -58,7 +58,7 @@
     opacity: 0;
   }
 
-  .modal-enter-to {
+  .modal-enter-to, .modal-leave {
     opacity: 1;
   }
 </style>
