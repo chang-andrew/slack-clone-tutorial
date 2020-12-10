@@ -3,12 +3,15 @@ This is the code repository for the Slack clone series, which will be available 
 
 ![slack-tutorial-thumbnail-centered](https://user-images.githubusercontent.com/40775579/99828667-dce6e780-2b20-11eb-89ac-08784beb4065.jpg)
 
-**Part 1**
+**Basic Interface**
 
 YouTube: https://www.youtube.com/watch?v=BdgRMe4WDTw&feature=youtu.be
 
 Medium: https://amchang.medium.com/slack-clone-vue-js-django-part-1-a-simple-slack-chat-interface-using-tailwind-css-9b90a443ae7f
 
-**Part 2**
+**Basic Chat Interactivity**
 
 YouTube: https://youtu.be/OFCKh9UNs-k
+
+**Vue/TailwindCSS Modal**
+YouTube: https://youtu.be/5kRClThy-y8
