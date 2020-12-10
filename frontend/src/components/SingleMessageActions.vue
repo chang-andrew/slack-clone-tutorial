@@ -5,7 +5,7 @@
         SmileIcon.action-icon
       div.action-btn(@click="startEdit")
         EditIcon.action-icon
-      div.action-btn(@click="deleteMessage")
+      div.action-btn(@click="$emit('delete')")
         Trash2Icon.action-icon.text-red-500
 </template>
 
@@ -19,7 +19,7 @@
     components: {
       SmileIcon,
       EditIcon,
-      Trash2Icon
+      Trash2Icon,
     }
   })
   export default class SingleMessageActions extends Vue {
@@ -27,10 +27,6 @@
 
     startEdit() {
       this.$bus.$emit('message:startEdit', this.message.id);
-    }
-
-    deleteMessage() {
-      this.$bus.$emit('message:delete', this.message.id);
     }
   }
 </script>
@@ -69,5 +65,4 @@
     @apply h-4;
     @apply w-4;
   }
-
 </style>
