@@ -14,4 +14,5 @@ Medium: https://amchang.medium.com/slack-clone-vue-js-django-part-1-a-simple-sla
 YouTube: https://youtu.be/OFCKh9UNs-k
 
 **Vue/TailwindCSS Modal**
+
 YouTube: https://youtu.be/5kRClThy-y8
