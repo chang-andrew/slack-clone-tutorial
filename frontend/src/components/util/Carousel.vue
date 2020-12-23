@@ -4,7 +4,8 @@
     div.flex.justify-between.items-center
       button.btn.m-4.h-8(@click="prevPhoto") <
       div.carousel-body
-        img.carousel-img(:src="activePhotoSrc")
+        transition(name='carousel')
+          img.carousel-img(:src="activePhotoSrc" :key="activePhotoId")
       button.btn.m-4.h-8(@click="nextPhoto") >
 </template>
 
@@ -49,5 +50,25 @@
     position:absolute;
     left: 0;
     bottom: 0;
+  }
+  /* transition classes */
+  .carousel-leave-active {
+    @apply duration-1000;
+    @apply transition;
+  }
+  .carousel-enter-active {
+    @apply duration-1000;
+    @apply transition;
+    @apply delay-200;
+  }
+  .carousel-enter {
+    @apply transform;
+    @apply translate-x-8;
+    @apply opacity-0;
+  }
+  .carousel-leave-to {
+    @apply transform;
+    @apply -translate-x-4;
+    @apply opacity-0;
   }
 </style>
