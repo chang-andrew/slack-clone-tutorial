@@ -22,5 +22,6 @@ module.exports = {
     'no-plusplus': 'warn',
     'import/order': 'warn',
     'prefer-destructuring': 'off',
+    'class-methods-use-this': 'off',
   },
 };
