@@ -2,7 +2,7 @@
   div.full-screen-div
     div.demo-box.pt-20.pl-20(ref="topDiv" @click="highlightDiv('topDiv')")
       div.demo-box.pt-20.pl-20(ref="midDiv" @click="highlightDiv('midDiv')")
-        div.w-48.h-48.demo-box(ref="botDiv" @click="highlightDiv('botDiv')")
+        div.w-48.h-48.demo-box(ref="botDiv" @click.stop="highlightDiv('botDiv')" @click.right.prevent)
 </template>
 
 <script lang='ts'>
